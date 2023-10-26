@@ -101,9 +101,13 @@
 			"sudo": true, 
 			"commandParts" : ["dnf", "update", "{0}", "-y"]
 		}],
+		"searchCommand": [{
+			"sudo": false,
+			"commandParts" : ["yum", "--cacheonly", "list", "{0}"]
+		}],
 		"isInstalledCommand": [{
 			"sudo": true, 
-			"commandParts" : ["dnf", "list", "--installed", "{0}"]}],
+			"commandParts" : ["dnf", "list", "--installed", "{0}", "-q"]}],
 		"packageLookupCommand": [{
 			"sudo": false, 
 			"commandParts" : ["yum", "list", "install", "{0}"]
@@ -112,7 +116,7 @@
         "expectedMicrosoftFeedInstallDirectory" : "",
 		"installedSDKVersionsCommand": [{
 			"sudo": false, 
-			"commandParts" : ["dotnet", "--listsdks"]
+			"commandParts" : ["dotnet", "--list-sdks"]
 		}],
 		"installedRuntimeVersionsCommand": 
 		[{
