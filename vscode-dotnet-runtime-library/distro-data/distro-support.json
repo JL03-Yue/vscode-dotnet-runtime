@@ -89,58 +89,91 @@
 		]
 	},
 	"Red Hat Enterprise Linux": {
-		"installCommand": "sudo dnf install {0} -y",
-		"uninstallCommand": "sudo dnf remove {0} -y",
-		"updateCommand": "sudo dnf update {0} -y",
-		"isInstalledCommand": "sudo dnf list --installed {0}",
-		"packageLookupCommand": "yum list installed {0}",
+		"installCommand": [{
+			"sudo": true, 
+			"commandParts" : ["dnf", "install", "{0}", "-y"]
+		}],
+		"uninstallCommand": [{
+			"sudo": true, 
+			"commandParts" : ["dnf", "remove", "{0}", "-y"]
+		}],
+		"updateCommand": [{
+			"sudo": true, 
+			"commandParts" : ["dnf", "update", "{0}", "-y"]
+		}],
+		"isInstalledCommand": [{
+			"sudo": true, 
+			"commandParts" : ["dnf", "list", "--installed", "{0}"]}],
+		"packageLookupCommand": [{
+			"sudo": false, 
+			"commandParts" : ["yum", "list", "install", "{0}"]
+		}],
 		"expectedDistroFeedInstallDirectory" : "/usr/lib64/dotnet/sdk",
         "expectedMicrosoftFeedInstallDirectory" : "",
-		"installedSDKVersionsCommand": "dotnet --list-sdks",
-		"installedRuntimeVersionsCommand": "dotnet --list-runtimes",
-		"currentInstallationVersionCommand": "dotnet --version",
-		"currentInstallPathCommand" : "which dotnet",
-		"versions": [{
-				"version": "9.1",
-				"dotnet": [{
-						"version": "6.0",
-						"sdk": "dotnet-sdk-6.0",
-						"runtime": "dotnet-runtime-6.0",
-						"aspnetcore": "aspnetcore-runtime-6.0"
-					},
-					{
-						"version": "7.0",
-						"sdk": "dotnet-sdk-7.0",
-						"runtime": "dotnet-runtime-7.0",
-						"aspnetcore": "aspnetcore-runtime-7.0"
-					}
-				]
-			},
+		"installedSDKVersionsCommand": [{
+			"sudo": false, 
+			"commandParts" : ["dotnet", "--listsdks"]
+		}],
+		"installedRuntimeVersionsCommand": 
+		[{
+			"sudo": false, 
+			"commandParts" : ["dotnet", "--list-runtimes"]
+		}],
+		"currentInstallationVersionCommand": [{
+			"sudo": false, 
+			"commandParts" : ["dotnet", "--version"]
+		}],
+		"currentInstallPathCommand" : [{
+			"sudo": false, 
+			"commandParts" : ["which", "dotnet"]
+		}],
+		"packages": [
 			{
-				"version": "8.7",
-				"dotnet": [{
-						"version": "6.0",
-						"sdk": "dotnet-sdk-6.0",
-						"runtime": "dotnet-runtime-6.0",
-						"aspnetcore": "aspnetcore-runtime-6.0"
-					},
-					{
-						"version": "7.0",
-						"sdk": "dotnet-sdk-7.0",
-						"runtime": "dotnet-runtime-7.0",
-						"aspnetcore": "aspnetcore-runtime-7.0"
-					}
+				"version": "6.0",
+				"sdk": [
+					"dotnet-sdk-6.0"
+				],
+				"runtime": [
+					"dotnet-runtime-6.0"
+				],
+				"aspnetcore": [
+					"aspnetcore-runtime-6.0"
 				]
 			},
 			{
 				"version": "7.0",
-				"dotnet": [{
-						"version": "6.0",
-						"sdk": "dotnet-sdk-6.0",
-						"runtime": "dotnet-runtime-6.0",
-						"aspnetcore": "aspnetcore-runtime-6.0"
-					}
+				"sdk": [
+					"dotnet-sdk-7.0"
+				],
+				"runtime": [
+					"dotnet-runtime-7.0"
+				],
+				"aspnetcore": [
+					"aspnetcore-runtime-7.0"
 				]
+			},
+			{
+				"version": "8.0",
+				"sdk": [
+					"dotnet-sdk-8.0"
+				],
+				"runtime": [
+					"dotnet-runtime-8.0"
+				],
+				"aspnetcore": [
+					"aspnetcore-runtime-8.0"
+				]
+			}
+		],
+		"strategy": [
+			{
+				"version": "7.0"
+			},
+			{
+				"version": "8.7"
+			},
+			{
+				"version": "9.1"
 			}
 		]
 	}
