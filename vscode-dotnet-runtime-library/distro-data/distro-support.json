@@ -165,7 +165,7 @@
 				]
 			}
 		],
-		"strategy": [
+		"versions": [
 			{
 				"version": "7.0"
 			},
